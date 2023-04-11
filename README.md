@@ -1,3 +1,11 @@
+# Porjects SetUp
+
+to create a next.js project with prisma and tailwind we run in the terminal
+
+```
+npx create-next-app@latest name-of-the-project
+```
+
 # Projects
 
 In this repo you can look up to my projects, some of the will be in the same repo and others will have their unqiue repo to hots te app in vercel.
