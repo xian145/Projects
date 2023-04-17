@@ -6,6 +6,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model trip {
+  id         String    @id @default(uuid())
+  user       Int
+  name       String
+  start_date DateTime  @default(now())
+  end_date   DateTime?
 }
