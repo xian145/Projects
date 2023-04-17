@@ -63,6 +63,16 @@ then we look for the file "index.css" remove everything and add this three lines
 
 look for the "app.css" file and delete it.
 
+## Important
+
+Don't forget to run
+
+```
+npm install
+```
+
+to install node_modules in case you download from another computer
+
 # Projects
 
 In this repo you can look up to my projects, some of the will be in the same repo and others will have their unqiue repo to hots te app in vercel.
