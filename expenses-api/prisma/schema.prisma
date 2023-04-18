@@ -12,7 +12,7 @@ datasource db {
 
 model trip {
   id         String    @id @default(uuid())
-  user       Int
+  user       String
   name       String
   start_date DateTime  @default(now())
   end_date   DateTime?

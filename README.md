@@ -28,6 +28,26 @@ This is just if you are using a local database but if you are using a server you
 
 Don't forget to add ".env" file in ".gitignore" file.
 
+After this create a folder in the root of the project named "lib" and inside of it create a file named "pirsma.js" and paste this:
+
+```js
+import { PrismaClient } from "@prisma/client";
+
+const globalForPrisma = global;
+
+const prisma = globalForPrisma.prisma || new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+
+export default prisma;
+```
+
+to modify tables and aplly that changes run in the terminal:
+
+```
+npx prisma migrate dev
+```
+
 If using eslint go to the file ".eslintrc.json" and change the content with
 
 ```json
