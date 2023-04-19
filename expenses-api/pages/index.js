@@ -12,7 +12,6 @@ const endpointsApi = [
         description: "*required* the number that indentifies the trip",
       },
     ],
-    response: "",
   },
   {
     name: "POST /trips",
@@ -32,6 +31,7 @@ const endpointsApi = [
         name: "id",
         description: "*required* the number that indentifies the trip",
       },
+      { name: "user", description: "(optional) the name of the user " },
       { name: "name", description: "(optional) the name of the trip" },
       {
         name: "start_date",
