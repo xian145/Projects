@@ -1,0 +1,9 @@
+-- CreateTable
+CREATE TABLE "expense" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "trip" INTEGER NOT NULL,
+    "name" TEXT NOT NULL,
+    "date" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "amount" REAL NOT NULL,
+    "currency" TEXT NOT NULL DEFAULT 'USD'
+);

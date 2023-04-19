@@ -16,15 +16,13 @@ model trip {
   name       String
   start_date DateTime  @default(now())
   end_date   DateTime?
-  expense    expense[]
 }
 
 model expense {
   id       Int      @id @default(autoincrement())
+  trip     Int
   name     String
   date     DateTime @default(now())
   amount   Float
-  currency String
-  trip     trip     @relation(fields: [tripid], references: [id])
-  tripid   Int
+  currency String   @default("USD")
 }
