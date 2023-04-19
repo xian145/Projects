@@ -54,6 +54,11 @@ If using eslint go to the file ".eslintrc.json" and change the content with
   "extends": ["next/babel","next/caore-web-vitals"]
 ```
 
+If you have the latest version of next.js will install tailwind automatically, but if not do this:
+
+## Tailwind
+
+<details>
 And lastly but not least to install [Tailwindcss](https://tailwindcss.com/) we run this in the terminal inside of the project folder.
 
 ```
@@ -82,6 +87,8 @@ then we look for the file "index.css" remove everything and add this three lines
 ```
 
 look for the "app.css" file and delete it.
+
+</details>
 
 ## Important
 
