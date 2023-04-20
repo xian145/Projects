@@ -95,6 +95,7 @@ look for the "app.css" file and delete it.
 
 ## NextAuth Email
 
+<details>
 First of all we need to change directory to the root of the project, after that run this in the terminal.
 
 ```
@@ -242,7 +243,9 @@ export default function Home() {
 }
 ```
 
-After that all is set
+After that all is set, you can press the button in main page and will redirect to a form to login, after put a email adress it will send a email to mailtrap and there you will click in the link and you are login
+
+</details>
 
 ## Important
 
