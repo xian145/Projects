@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react"; //we can check is someone is logge
 import { useRouter } from "next/router"; //help us to redirect if the session is active
 
 export default function Home() {
-  const { data: session, status } = useSession;
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   if (status === "loading") {
