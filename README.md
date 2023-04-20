@@ -234,20 +234,70 @@ return (
 );
 ```
 
-Now, on pages/index.js add a link that points to /api/auth/signin.
+Now, on pages/index.js add a link that points to /api/auth/signin and look if is already loggin if taht happens, redirect to /home.js
 
 ```js
-import { Link } from "react-router-dom";
+import { useSession } from "next-auth/react"; //we can check is someone is logged in
+import { useRouter } from "next/router"; //help us to redirect if the session is active
 
 export default function Home() {
-  return (
-    <div>
-      <h1>Home page</h1>
-      <Link to="/api/auth/signin">Login</Link>
-    </div>
-  );
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if (status === "loading") {
+    return null;
+  }
+
+  if (session) {
+    //If the session is active before we render something we will make a redirection to the home page
+    router.push("/home");
+  } else
+    return (
+      <div>
+        <h1>You are not login</h1>
+        <a
+          className="p-1 border border-gray-300 rounded-md hover:bg-green-100 hover:pointer hover:text-gray-800"
+          href="/api/auth/signin"
+        >
+          Login
+        </a>
+      </div>
+    );
 }
 ```
+
+create a file in /pages/home.js with the next code:
+
+```js
+import { useSession } from "next-auth/react"; //to check if the user is logged in
+import { useRouter } from "next/router";
+
+export default function Home() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if (status === "loading") {
+    return null;
+  }
+
+  if (!session) {
+    router.push("/");
+  } else
+    return (
+      <div>
+        <p>You are logged in!</p>
+        <a
+          href="/api/auth/signout"
+          className="border border-gray-100 hover:bg-red-600"
+        >
+          Logout
+        </a>
+      </div>
+    );
+}
+```
+
+This code will make a home page but will look if is logged, if not will redirect to loggin button and if looged in it will render the page
 
 After that all is set, you can press the button in main page and will redirect to a form to login, after put a email adress it will send a email to mailtrap and there you will click in the link and you are login
 
