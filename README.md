@@ -212,6 +212,12 @@ model Session {
 }
 ```
 
+Run a migration
+
+```
+npx prisma migrate dev
+```
+
 Open pages/\_app.js and in the top add
 
 ```js
