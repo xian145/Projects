@@ -8,11 +8,11 @@ export default function NewTweet() {
   //we will not redirect since this is a component, simply will not render.
   if (!session || !session.user) return null;
 
-  const handleInput = (event) => {
-    const element = event.target;
+  const handleInput = (e) => {
+    const element = e.target;
     element.style.height = "auto";
     element.style.height = `${element.scrollHeight}px`;
-    setContent(event.target.value);
+    setContent(e.target.value);
   };
 
   return (
