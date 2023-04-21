@@ -25,7 +25,12 @@ export default function NewTweet() {
           return;
         }
 
-        alert(content);
+        //if we have something in the content, lets do this
+        fetch("/api/tweet", {
+          method: "POST",
+          headers: { "content-Type": "aplication/json" },
+          body: JSON.stringify({ content }),
+        });
       }}
     >
       <div>
