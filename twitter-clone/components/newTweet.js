@@ -27,8 +27,9 @@ export default function NewTweet() {
 
         //if we have something in the content, lets do this
         fetch("/api/tweet", {
+          //fetch the api with a POST method the header is to indicate what type of information we are sending, is very important, and body is what we sending
           method: "POST",
-          headers: { "content-Type": "aplication/json" },
+          headers: { "content-Type": "application/json" },
           body: JSON.stringify({ content }),
         });
       }}
