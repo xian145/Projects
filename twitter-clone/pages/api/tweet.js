@@ -3,10 +3,11 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
 
 export default async function handler(req, res) {
-  const session = await getServerSession(req, res, authOptions);
+  if (req.method !== "POST") {
+    return res.status(501).end("method not allowed");
+  }
 
-  //chek if the session is active
-  if (!session) return res.status(401).json({ message: "Not logged in" });
+  const session = await getServerSession(req, res, authOptions);
 
   //search for the user in the db
   const user = await prisma.user.findUnique({
@@ -15,12 +16,18 @@ export default async function handler(req, res) {
     },
   });
 
-  //if user fetched is not succesful
-  if (!user) return res.status(401).json({ message: "user not found" });
-
   //this function will handle the request if is a POST request
   if (req.method === "POST") {
-    console.log(req.body);
+    await prisma.Tweet.create({
+      data: {
+        content: req.body.content,
+        author: {
+          connect: { id: user.id }, //we are telling to prisma that the id for teh author most be search un User table and extract from there
+        },
+      },
+    });
+    res.end();
+    return;
   }
 
   res.end();
