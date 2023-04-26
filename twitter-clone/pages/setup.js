@@ -9,8 +9,7 @@ export default function Setup() {
   const router = useRouter();
 
   if (!session || !session.user) {
-    router.push("/");
-    return;
+    return null;
   }
 
   if (status === "loading") return null;
