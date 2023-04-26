@@ -2,8 +2,11 @@ import { useSession } from "next-auth/react"; //to check if the user is logged i
 import { useRouter } from "next/router";
 import NewTweet from "@/components/newTweet";
 import Tweets from "@/components/tweets";
+import prisma from "@/lib/prisma";
+import { getTweets } from "@/lib/data";
 
-export default function Home() {
+export default function Home({ tweets }) {
+  //to this function enter tweets as a props from the function below this one
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -20,14 +23,7 @@ export default function Home() {
   return (
     <>
       <NewTweet />
-      <Tweets
-        tweets={[
-          { content: "test" },
-          { content: "another" },
-          { content: "me la pelas", pelas: "si pelas" },
-        ]}
-      />
-      {/*we call to the component Tweets and send some information (tweets)*/}
+      <Tweets tweets={tweets} />
       <a
         href="/api/auth/signout"
         className="border border-gray-100 hover:bg-red-600"
@@ -36,4 +32,16 @@ export default function Home() {
       </a>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  //this function will call the function "getTweets" from /lib/data.js and send prisma as a prop so can use prisma
+  let tweets = await getTweets(prisma); //wait to get all the ifnormation from the tables
+  tweets = JSON.parse(JSON.stringify(tweets));
+
+  return {
+    props: {
+      tweets,
+    },
+  };
 }
