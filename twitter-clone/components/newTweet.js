@@ -1,9 +1,11 @@
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function NewTweet() {
   const [content, setContent] = useState("");
   const { data: session } = useSession();
+  const router = useRouter();
 
   //we will not redirect since this is a component, simply will not render.
   if (!session || !session.user) return null;
@@ -26,12 +28,14 @@ export default function NewTweet() {
         }
 
         //if we have something in the content, lets do this
-        fetch("/api/tweet", {
+        await fetch("/api/tweet", {
           //fetch the api with a POST method the header is to indicate what type of information we are sending, is very important, and body is what we sending
           method: "POST",
           headers: { "content-Type": "application/json" },
           body: JSON.stringify({ content }),
         });
+
+        router.reload(window.location.pathname); // with this th page will autoreload so we can see the tweet we just made
       }}
     >
       <div>
