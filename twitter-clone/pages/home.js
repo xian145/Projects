@@ -4,8 +4,12 @@ import NewTweet from "@/components/newTweet";
 import Tweets from "@/components/tweets";
 import prisma from "@/lib/prisma";
 import { getTweets } from "@/lib/data";
+import { useEffect } from "react";
 
 export default function Home({ tweets }) {
+  useEffect(() => {
+    document.body.style.opacity = 1;
+  }, []);
   //to this function enter tweets as a props from the function below this one
   const { data: session, status } = useSession();
   const router = useRouter();
