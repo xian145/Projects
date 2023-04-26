@@ -7,5 +7,9 @@ export const getTweets = async (prisma) => {
         id: "desc",
       },
     ],
+    include: {
+      //since author is not part of the original table we need to tell prisma to look into author that is the relation we made with the uiser table
+      author: true,
+    },
   });
 };
