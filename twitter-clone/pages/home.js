@@ -20,6 +20,12 @@ export default function Home({ tweets }) {
     router.push("/");
   }
 
+  if (session && !session.user.username) {
+    //if dont have username send the user to /setup
+    router.push("/setup");
+    return;
+  }
+
   return (
     <>
       <NewTweet />
